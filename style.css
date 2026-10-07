@@ -1,0 +1,144 @@
+:root {
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --display-bg: #f9fafb;
+  --text: #111827;
+  --muted: #6b7280;
+  --key-bg: #f3f4f6;
+  --key-hover: #e5e7eb;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --op-bg: #eef2ff;
+  --op-hover: #e0e7ff;
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.calculator {
+  width: 100%;
+  max-width: 360px;
+  padding: 16px;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.display {
+  min-height: 96px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 4px;
+  background: var(--display-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  word-break: break-all;
+  text-align: right;
+}
+
+.previous {
+  min-height: 1.2em;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.current {
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.current.long {
+  font-size: 1.5rem;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.key {
+  padding: 18px 0;
+  font-size: 1.25rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--key-bg);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.12s, transform 0.05s;
+}
+
+.key:hover {
+  background: var(--key-hover);
+}
+
+.key:active {
+  transform: scale(0.97);
+}
+
+.key:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.key-op {
+  color: var(--accent);
+  background: var(--op-bg);
+}
+
+.key-op:hover {
+  background: var(--op-hover);
+}
+
+.key-clear {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+.key-clear:hover {
+  background: #fecaca;
+}
+
+.key-equals {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.key-equals:hover {
+  background: var(--accent-hover);
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 360px) {
+  .key {
+    padding: 14px 0;
+    font-size: 1.1rem;
+  }
+
+  .current {
+    font-size: 1.9rem;
+  }
+}
