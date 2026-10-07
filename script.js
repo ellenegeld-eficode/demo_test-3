@@ -78,6 +78,13 @@ function appendDecimal() {
   updateDisplay();
 }
 
+function insertPi() {
+  resetIfError();
+  state.current = String(parseFloat(Math.PI.toPrecision(MAX_DIGITS)));
+  state.overwrite = true; // next digit starts a new number
+  updateDisplay();
+}
+
 function backspace() {
   if (state.error) return clear();
   if (state.overwrite) return; // don't edit a computed result
@@ -143,6 +150,7 @@ function handleAction(action) {
     case "clear": return clear();
     case "backspace": return backspace();
     case "decimal": return appendDecimal();
+    case "pi": return insertPi();
     case "equals": return equals();
   }
 }
@@ -162,6 +170,8 @@ document.addEventListener("keydown", (event) => {
     appendDigit(key);
   } else if (key === ".") {
     appendDecimal();
+  } else if (key === "p" || key === "P") {
+    insertPi();
   } else if (key in SYMBOLS) {
     event.preventDefault(); // avoid browser quick-find on "/"
     chooseOperator(key);

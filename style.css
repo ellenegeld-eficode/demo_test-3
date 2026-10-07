@@ -1,15 +1,18 @@
 :root {
-  --bg: #f3f4f6;
-  --card: #ffffff;
-  --display-bg: #f9fafb;
-  --text: #111827;
-  --muted: #6b7280;
-  --key-bg: #f3f4f6;
-  --key-hover: #e5e7eb;
-  --accent: #4f46e5;
-  --accent-hover: #4338ca;
-  --op-bg: #eef2ff;
-  --op-hover: #e0e7ff;
+  --bg: #000000;
+  --card: #111111;
+  --display-bg: #1a1a1a;
+  --text: #ffffff;
+  --muted: #b3b3b3;
+  --accent: #ffd400;
+  --accent-hover: #ffea4d;
+  --on-accent: #000000;
+  --border: #333333;
+  --key-bg: var(--display-bg);
+  --key-hover: #2a2a2a;
+  --op-bg: var(--display-bg);
+  --op-hover: #2a2a2a;
+  --shadow: rgba(0, 0, 0, 0.6);
   --radius: 14px;
 }
 
@@ -34,8 +37,9 @@ body {
   max-width: 360px;
   padding: 16px;
   background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 30px var(--shadow);
 }
 
 .display {
@@ -111,16 +115,17 @@ body {
 }
 
 .key-clear {
-  color: #b91c1c;
-  background: #fee2e2;
+  color: var(--accent);
+  background: var(--display-bg);
+  border: 1px solid var(--accent);
 }
 
 .key-clear:hover {
-  background: #fecaca;
+  background: var(--key-hover);
 }
 
 .key-equals {
-  color: #ffffff;
+  color: var(--on-accent);
   background: var(--accent);
 }
 
