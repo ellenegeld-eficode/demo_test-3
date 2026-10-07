@@ -8,6 +8,7 @@ const state = {
   previous: "",
   operator: null,
   overwrite: false, // next digit replaces the current value
+  operandEntered: false,
   error: false,
 };
 
@@ -41,6 +42,7 @@ function clear() {
   state.previous = "";
   state.operator = null;
   state.overwrite = false;
+  state.operandEntered = false;
   state.error = false;
   updateDisplay();
 }
@@ -50,6 +52,7 @@ function setError() {
   state.previous = "";
   state.operator = null;
   state.overwrite = true;
+  state.operandEntered = false;
   state.error = true;
   updateDisplay();
 }
@@ -64,6 +67,7 @@ function appendDigit(digit) {
   } else if (state.current.replace(/[-.]/g, "").length < MAX_DIGITS) {
     state.current += digit;
   }
+  state.operandEntered = true;
   updateDisplay();
 }
 
@@ -75,6 +79,7 @@ function appendDecimal() {
   } else if (!state.current.includes(".")) {
     state.current += ".";
   }
+  state.operandEntered = true;
   updateDisplay();
 }
 
@@ -82,6 +87,7 @@ function insertPi() {
   resetIfError();
   state.current = String(parseFloat(Math.PI.toPrecision(MAX_DIGITS)));
   state.overwrite = true; // next digit starts a new number
+  state.operandEntered = true;
   updateDisplay();
 }
 
@@ -121,7 +127,7 @@ function calculate(a, b, operator) {
 
 function chooseOperator(operator) {
   resetIfError();
-  if (state.operator && !state.overwrite) {
+  if (state.operator && state.operandEntered) {
     const result = calculate(state.previous, state.current, state.operator);
     if (result === null) return setError();
     state.previous = result;
@@ -131,6 +137,7 @@ function chooseOperator(operator) {
   state.operator = operator;
   state.current = state.previous;
   state.overwrite = true;
+  state.operandEntered = false;
   updateDisplay();
 }
 
@@ -142,6 +149,7 @@ function equals() {
   state.previous = "";
   state.operator = null;
   state.overwrite = true;
+  state.operandEntered = false;
   updateDisplay();
 }
 
